@@ -79,4 +79,6 @@ RUN pip3 install jupyter --user \
 
 WORKDIR /home/glue/notebook
 
+ADD kernels/gluepyspark/kernel.json /home/glue/.local/share/jupyter/kernels/gluepyspark/
+
 ENTRYPOINT [ "start_notebook" ]
