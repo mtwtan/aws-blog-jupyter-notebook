@@ -8,8 +8,9 @@ container=$4
 #echo ${cred_fileloc}
 
 if [ "$#" -ne 4 ]; then
-  echo "You need to give 4 parameters: (1) location of AWS config file; (2) Section of the config; (3) location of notebook files; (4) Docker container image. 
-  Example: ./start_pyspark.sh /home/user/.aws/config myprofile /home/user/notebook <docker repository>/<docker image>"
+  echo "You need to give 4 parameters: (1) Path of the AWS config file; (2) Section of the config; (3) location of notebook files; (4) Docker container image. 
+  Example: ./start_pyspark.sh /home/user/.aws/ myprofile /home/user/notebook/ <docker repository>/<docker image>
+  *** Please use trailing slashes ***"
   exit 1
 fi
 
@@ -60,7 +61,8 @@ function read_ini {
 
 }
 
-AWS_ROLE=$(read_ini ${user_sect} ${profile_key} ${config_fileloc})
+config_filepath="${config_fileloc}config"
+AWS_ROLE=$(read_ini ${user_sect} ${profile_key} ${config_filepath})
 SESSION_NAME=$(uuidgen)
 # Generate temporary cred
 get_tmp_cred ${AWS_ROLE} ${SESSION_NAME}
