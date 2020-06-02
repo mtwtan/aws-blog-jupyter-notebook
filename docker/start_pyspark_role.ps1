@@ -133,7 +133,13 @@ $AWS_SECRET_ACCESS_KEY=""
 $AWS_SESSION_TOKEN=""
 
 
+# Get temporary Credentials
+$uuid = New-Guid
+$temp_cred = (Use-STSRole -RoleArn $role_arn -RoleSessionName $uuid)
 
+$AWS_ACCESS_KEY_ID = $temp_cred.Credentials.AccessKeyId
+$AWS_SECRET_ACCESS_KEY = $temp_cred.Credentials.SecretAccessKey
+$AWS_SESSION_TOKEN $temp_cred.Credentials.SessionToken
 
 Write-Output $AWS_ACCESS_KEY_ID
 Write-Output $AWS_SECRET_ACCESS_KEY
