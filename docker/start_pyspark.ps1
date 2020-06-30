@@ -107,7 +107,7 @@ Function Get-IniContent {
 
 if ($args.Count -lt 4) {
   Write-Output "You have only given $($args.Count) arguments. You need to give 4: (1) location of AWS credential file; (2) Section of the credentials; (3) location of notebook files; (4) Docker container image. 
-  Example: ./start_pyspark.sh /home/user/.aws/credentials default /home/user/notebook <docker repository>/<docker image>"
+  Example: .\start_pyspark_role.ps1 C:\Users\<User>\.aws\ MyProfile C:\Users\<User>\notebook <docker repository>/<docker image>"
   exit 1
 }
 
