@@ -26,7 +26,7 @@ function get_tmp_cred {
   rolearn="${1}"
   role_session_name="${2}"
 
-  cmd="aws sts assume-role --role-arn ${rolearn} --role-session-name ${role_session_name}"
+  cmd="aws sts assume-role --role-arn ${rolearn} --role-session-name ${role_session_name} --profile ${user_sect}"
   json_return=$(${cmd})
   AWS_ACCESS_KEY_ID=$(echo ${json_return} | jq .Credentials.${key_id} | sed 's/"//g')
   AWS_SECRET_ACCESS_KEY=$(echo ${json_return} | jq .Credentials.${secret_key} | sed 's/"//g')
