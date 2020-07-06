@@ -52,7 +52,7 @@ AWS_SECRET_ACCESS_KEY=$(read_ini ${user_sect} ${secret_key} ${cred_fileloc})
 
 docker_cmd="/bin/bash pyspark"
 
-docker_run="docker run -d --env AWS_ACCESS_KEY_ID='${AWS_ACCESS_KEY_ID}' --env AWS_SECRET_ACCESS_KEY='${AWS_SECRET_ACCESS_KEY}' -v ${cred_fileloc}:/home/glue/.aws -v ${nb_fileloc}:/home/glue/notebook -p 8000:8000 --rm ${container} ${docker_cmd}"
+docker_run="docker run -d --env AWS_ACCESS_KEY_ID='${AWS_ACCESS_KEY_ID}' --env AWS_SECRET_ACCESS_KEY='${AWS_SECRET_ACCESS_KEY}' -v ${cred_fileloc}:/home/glue/.aws -v ${nb_fileloc}:/home/glue/notebook -p 8000:8000 --rm --name jupyter_notebook ${container} ${docker_cmd}"
 
 
 eval ${docker_run}
